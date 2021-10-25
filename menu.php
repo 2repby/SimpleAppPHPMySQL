@@ -23,3 +23,4 @@
     }
 
 ?>
+<a href="categories.php?c=1">Категории</a>

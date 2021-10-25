@@ -9,28 +9,31 @@
     require("auth.php");
     require ("menu.php");
 
-    echo ($err_msg);
-switch ($_GET["c"]) {
+
+    switch ($_GET["c"]) {
     case "1":
         {
-            try {
-                $query = $pdo->query('INSERT INTO category (name) VALUES ("' . $_GET["catname"] . '")');
-                echo($query->queryString);
-                $err_msg = "Категория успешно добавлена";
-            } catch (PDOException $exception) {
-                $err_msg = "Ошибка добавления категории";
-            }
+            require("categories.php");
+            if(isset($_SESSION['username'])) {
+                switch ($_GET["a"]) {
+                    case "1":
+                        require("add_cat.php");break;
+                    case "2":
+                        require("del_cat.php");break;
+                }
+            };
+            if ($err_msg) require 'message.php';
+            require("categories.php");
+            if(isset($_SESSION['username'])) require("cat_form.php");
+
+
+
+
 
         }break;
     case "2":
         {
-            try {
-                $query = $pdo->query('DELETE FROM category WHERE id="' . $_GET["id"] . '"');
-                echo($query->queryString);
-                $err_msg = "Категория успешно удалена";
-            } catch (PDOException $exception) {
-                $err_msg = "Ошибка удаления категории";
-            }
+
 
     } break;
 }
@@ -38,41 +41,8 @@ switch ($_GET["c"]) {
 
 
 ?>
-<div class="container">
-    <table  border=1 class="table">
-        <thead class="thead-light">
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Наименование</th>
-            <th scope="col">Действие</th>
-        </tr>
-        </thead>
-        <tbody>
-<?php
-$query = $pdo->query('SELECT * FROM category');
-while ($row = $query->fetch())
-{
-?>
-
-    <tr>
-
-        <td><?php echo $row['id'] ?></th>
-        <td><?php echo $row['name'] ?></td>
-        <td><a href="?c=2&id=<?php echo $row['id'] ?>">Удалить</a></td>
 
 
-        </tr>
-
-<?php } ?>
-        </tbody>
-    </table>
-</div>
-<p>
-<form method="get" action="/">
-    <input type="hidden" name="c" value="1">
-    <input type="text" name="catname">
-    <input type="submit">
-</form>
 
 
 
