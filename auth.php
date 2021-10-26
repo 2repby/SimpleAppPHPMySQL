@@ -1,16 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kda
- * Date: 19.10.2021
- * Time: 13:37
- */
-
     session_start();
     $err_msg = '';
     if (isset($_POST["username"]))
     {
-
         $query = $pdo->query('SELECT md5password FROM users WHERE name="' . $_POST["username"] . '"');
         $query->execute();
 
@@ -24,9 +16,8 @@
             }
         }
 
-
-
     }
+
     if (isset($_GET["logout"]))
     {
         session_unset();

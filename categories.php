@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         <?php
-        echo ($err_msg);
+
         $query = $pdo->query('SELECT * FROM category');
         while ($row = $query->fetch())
         {
@@ -20,7 +20,7 @@
 
                 <td><?php echo $row['id'] ?></th>
                 <td><?php echo $row['name'] ?></td>
-                <?php if(isset($_SESSION['username'])) echo ('<td><a href="?c=2&id="'.$row['id'].'">Удалить</a></td>') ?>
+                <?php if(isset($_SESSION['username'])) echo ('<td><a href="?c=1&a=2&id='.$row['id'].'">Удалить</a></td>') ?>
 
 
 
