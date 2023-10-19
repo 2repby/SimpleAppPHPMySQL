@@ -8,7 +8,7 @@
 $host = '127.0.0.1';
 $db   = '60571z';
 $user = 'root';
-$pass = 'keep';
+$pass = 'password';
 $charset = 'utf8';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
